@@ -19,8 +19,7 @@ import java.net.URL;
 
 /**
  * 微信工具类
- * 
- * @author xiangze
+ *
  *
  */
 public class WechatUtil {

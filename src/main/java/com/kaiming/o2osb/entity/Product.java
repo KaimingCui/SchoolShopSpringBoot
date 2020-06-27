@@ -5,8 +5,7 @@ import java.util.List;
 
 /**
  * 商品实体类
- * 
- * @author xiangze
+ *
  *
  */
 public class Product {

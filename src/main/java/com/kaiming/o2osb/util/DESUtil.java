@@ -8,8 +8,7 @@ import java.util.Base64;
 
 /**
  * DES是一种对称加密算法，所谓对称加密算法即：加密和解密使用相同密钥的算法。
- * 
- * @author xiangze
+ *
  *
  */
 public class DESUtil {

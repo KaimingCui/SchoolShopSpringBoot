@@ -13,7 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-
+//服务已过期，不能用
 public class ShortNetAddressUtilBaidu {
 
     public static int TIMEOUT = 30*1000;

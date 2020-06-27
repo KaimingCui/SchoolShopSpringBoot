@@ -32,7 +32,7 @@ public class AreaController {
 
 	/**
 	 * 获取所有的区域信息
-	 *
+	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/listarea", method = RequestMethod.GET)
@@ -56,6 +56,99 @@ public class AreaController {
 		long endTime = System.currentTimeMillis();
 		logger.debug("costTime:[{}ms]", endTime - startTime);
 		logger.info("===end===");
+		return modelMap;
+	}
+
+	/**
+	 * 添加区域信息
+	 * 
+	 * @param areaStr
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/addarea", method = RequestMethod.POST)
+	@ResponseBody
+	private Map<String, Object> addArea(String areaStr, HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		ObjectMapper mapper = new ObjectMapper();
+		Area area = null;
+		try {
+			// 接收前端传递过来的area json字符串信息并转换成Area实体类实例
+			area = mapper.readValue(areaStr, Area.class);
+			// decode可能有中文的地方
+			area.setAreaName((area.getAreaName() == null) ? null : URLDecoder.decode(area.getAreaName(), "UTF-8"));
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.toString());
+			return modelMap;
+		}
+		// 空值判断
+		if (area != null && area.getAreaName() != null) {
+			try {
+				// 添加区域信息
+				AreaExecution ae = areaService.addArea(area);
+				if (ae.getState() == AreaStateEnum.SUCCESS.getState()) {
+					modelMap.put("success", true);
+				} else {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", ae.getStateInfo());
+				}
+			} catch (RuntimeException e) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", e.toString());
+				return modelMap;
+			}
+
+		} else {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "请输入区域信息");
+		}
+		return modelMap;
+	}
+
+	/**
+	 * 修改区域信息，主要修改名字
+	 * 
+	 * @param areaStr
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/modifyarea", method = RequestMethod.POST)
+	@ResponseBody
+	private Map<String, Object> modifyArea(String areaStr, HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		ObjectMapper mapper = new ObjectMapper();
+		Area area = null;
+		try {
+			// 接收前端传递过来的area json字符串信息并转换成Area实体类实例
+			area = mapper.readValue(areaStr, Area.class);
+			area.setAreaName((area.getAreaName() == null) ? null : URLDecoder.decode(area.getAreaName(), "UTF-8"));
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.toString());
+			return modelMap;
+		}
+		// 空值判断
+		if (area != null && area.getAreaId() != null) {
+			try {
+				// 修改区域信息
+				AreaExecution ae = areaService.modifyArea(area);
+				if (ae.getState() == AreaStateEnum.SUCCESS.getState()) {
+					modelMap.put("success", true);
+				} else {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", ae.getStateInfo());
+				}
+			} catch (RuntimeException e) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", e.toString());
+				return modelMap;
+			}
+
+		} else {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "请输入区域信息");
+		}
 		return modelMap;
 	}
 

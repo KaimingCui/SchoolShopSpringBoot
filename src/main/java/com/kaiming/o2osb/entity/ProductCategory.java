@@ -4,8 +4,7 @@ import java.util.Date;
 
 /**
  * 商品类别实体类
- * 
- * @author xiangze
+ *
  *
  */
 public class ProductCategory {

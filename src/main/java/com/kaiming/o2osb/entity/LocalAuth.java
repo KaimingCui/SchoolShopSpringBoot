@@ -4,8 +4,7 @@ import java.util.Date;
 
 /**
  * 本地验证实体类，主要用来做帐号密码的登录
- * 
- * @author xiangze
+ *
  *
  */
 public class LocalAuth {

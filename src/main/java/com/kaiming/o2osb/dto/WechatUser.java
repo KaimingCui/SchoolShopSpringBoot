@@ -6,8 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 微信用户实体类
- * 
- * @author xiangze
+ *
  *
  */
 public class WechatUser implements Serializable {

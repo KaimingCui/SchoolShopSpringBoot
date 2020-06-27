@@ -12,8 +12,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * spring-redis.xml里的配置
- * 
- * @author xiangze
+ *
  *
  */
 @Configuration

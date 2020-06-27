@@ -94,7 +94,7 @@ public class ShopServiceImpl implements ShopService {
 		try {
 			// 给店铺信息赋初始值
 			//TODO 以后加入超级管理员系统 修改权限
-			shop.setEnableStatus(1);
+			shop.setEnableStatus(0);
 			shop.setCreateTime(new Date());
 			shop.setLastEditTime(new Date());
 			// 添加店铺信息

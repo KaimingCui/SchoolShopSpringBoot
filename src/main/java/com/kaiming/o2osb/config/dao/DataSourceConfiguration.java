@@ -12,8 +12,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
  * 配置datasource到ioc容器里面
- * 
- * @author xiangze
+ *
  *
  */
 @Configuration
